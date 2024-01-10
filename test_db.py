@@ -13,4 +13,12 @@ products = db.collection('products')
 product_count =products.count().get()
 
 print(product_count[0][0].value)
-print(products.document().get().to_dict())
+all_products = products.get()
+
+all_prods = []
+for doc in all_products:
+    all_prods.append(doc.to_dict())
+
+print({"products" : all_prods})
+
+
