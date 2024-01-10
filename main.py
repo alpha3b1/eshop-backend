@@ -40,6 +40,8 @@ def get_products():
 @app.post('/store-management/products')
 def create_product(product: Product):
     products = db.collection('products')
-
-    products.add(product) 
-    return({"added":True})
+    try:
+        products.add(product)
+    except:
+    kkkkkkjk a
+    return(product)
