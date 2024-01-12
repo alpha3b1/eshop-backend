@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
@@ -41,7 +41,9 @@ def get_products():
 def create_product(product: Product):
     products = db.collection('products')
     try:
-        products.add(product)
-    except:
-    kkkkkkjk a
-    return(product)
+        products.add(product.model_dump())
+        #pass
+    except Exception as e:
+        raise HTTPException(status_code=500, detail="Error creating product")
+    return({"message":"Product created"})
+#    return(product)
